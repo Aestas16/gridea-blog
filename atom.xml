@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.aestas16.top</id>
     <title>Aestas16&apos;s Blog</title>
-    <updated>2020-12-27T04:33:34.552Z</updated>
+    <updated>2020-12-27T05:39:58.084Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.aestas16.top"/>
     <link rel="self" href="https://blog.aestas16.top/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://blog.aestas16.top/images/avatar.png</logo>
     <icon>https://blog.aestas16.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Aestas16&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[【题解】[BZOJ 3728] Final Zarowki]]></title>
+        <id>https://blog.aestas16.top/post/bzoj3728/</id>
+        <link href="https://blog.aestas16.top/post/bzoj3728/">
+        </link>
+        <updated>2020-12-27T04:36:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>提供一种不用堆的做法.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>提供一种不用堆的做法.</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[NOIP2020 游记]]></title>
         <id>https://blog.aestas16.top/post/noip2020/</id>

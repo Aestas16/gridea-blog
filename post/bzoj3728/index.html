@@ -4,7 +4,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<title>关于 | Aestas16&#39;s Blog</title>
+<title>【题解】[BZOJ 3728] Final Zarowki | Aestas16&#39;s Blog</title>
 
 <link rel="shortcut icon" href="https://blog.aestas16.top/favicon.ico?v=1609047595266">
 
@@ -202,24 +202,87 @@
         <div class="post-detail gt-bg-theme-color-second">
             <article class="gt-post-content">
                 <h2 class="post-title">
-                    关于
+                    【题解】[BZOJ 3728] Final Zarowki
                 </h2>
                 <div class="post-info">
                     <time class="post-time gt-c-content-color-first">
                         · 2020-12-27 ·
                     </time>
                     
+                        <a href="https://blog.aestas16.top/tag/d9iOQkLvK/" class="post-tags">
+                            # 题解
+                        </a>
+                    
+                        <a href="https://blog.aestas16.top/tag/ZEMBir1z_B/" class="post-tags">
+                            # 贪心
+                        </a>
+                    
+                        <a href="https://blog.aestas16.top/tag/E37yYnOnPr/" class="post-tags">
+                            # 平衡树
+                        </a>
+                    
                 </div>
                 <div class="post-content">
-                    <h2 id="关于我">关于我</h2>
-<p>FJ 菜鸡</p>
-<h2 id="关于这个博客">关于这个博客</h2>
-<p>咕咕咕</p>
+                    <p>提供一种不用堆的做法.</p>
+<!-- more -->
+<p>考虑贪心, 对于一个房间, 选择不小于它所需功率且功率最小的灯泡一定是最优的, 因为这样子能够最大程度的利用灯泡, 同时对 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">{w_i}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span> 从大到小排序, 这样可以使功率大的灯泡浪费的更少.</p>
+<p>对每一个房间寻找不小于它所需功率且功率最小的灯泡, 将答案加上灯泡功率, 然后删去这个灯泡. 如果找不到, 则代表需要换一次灯泡, 并记录下换灯泡的次数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>.</p>
+<p>最后对每个房间过剩的功率 (即这个房间灯泡的功率减去这个房间的所需功率) 进行从大到小排序, 将答案减去前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>−</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">k-t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 个值, 即可得到答案.</p>
+<p>特别地, 如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span> 大于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>, 则表示这是一种无解状态, 输出 <code>NIE</code></p>
+<p>因此我们需要维护一组数据, 要进行以下操作:</p>
+<ul>
+<li>插入一个数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span></li>
+<li>删除一个数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span></li>
+<li>寻找不小于数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 且最小的数</li>
+</ul>
+<p>发现以上操作可以用平衡树解决, 由于此题空间较紧, 同时考虑代码难度等多方面因素, 可以使用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">STL::set</mtext></mrow><annotation encoding="application/x-tex">\texttt{STL::set}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">STL::set</span></span></span></span></span> 代替平衡树完成以上操作.</p>
+<p>时间复杂度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Θ</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\Theta(n \log n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>.</p>
+<p>代码如下:</p>
+<pre><code class="language-cpp">#define ll long long
+#define it std::multiset&lt;int&gt;::iterator
+
+using std::multiset;
+
+const int N = 5e5;
+
+int n, flag, tot, p[N + 10], w[N + 10], qaq[N + 10];
+ll ans;
+
+multiset&lt;int&gt; s;
+
+bool cmp(int x, int y) { return x &gt; y; }
+
+signed main() {
+    cin &gt;&gt; n &gt;&gt; k;
+    for (int i = 1; i &lt;= n; i++) cin &gt;&gt; p[i], s.insert(p[i]);
+    for (int i = 1; i &lt;= n; i++) cin &gt;&gt; w[i];
+    std::sort(w + 1, w + 1 + n);
+    for (int i = n; i; i--) {
+        int x = w[i];
+        it tmp = s.upper_bound(x - 1);
+        if (tmp == s.end())
+            ans += x, flag++;
+        else
+            ans += *tmp, qaq[++tot] = *tmp - x, s.erase(tmp++);
+    }
+    if (flag &gt; k) return cout &lt;&lt; &quot;NIE&quot; &lt;&lt; endl, 0;
+    std::sort(qaq + 1, qaq + 1 + tot, cmp);
+    for (int i = 1; i &lt;= k - flag; i++) ans -= qaq[i];
+    return cout &lt;&lt; ans &lt;&lt; endl, 0;
+}
+</code></pre>
 
                 </div>
             </article>
         </div>
 
+        
+            <div class="next-post">
+                <div class="next gt-c-content-color-first">下一篇</div>
+                <a href="https://blog.aestas16.top/post/noip2020/" class="post-title gt-a-link">
+                    NOIP2020 游记
+                </a>
+            </div>
         
 
         
