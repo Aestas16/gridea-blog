@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://blog.aestas16.top</id>
     <title>Aestas16&apos;s Blog</title>
-    <updated>2020-12-27T04:26:38.210Z</updated>
+    <updated>2020-12-27T04:33:34.552Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://blog.aestas16.top"/>
     <link rel="self" href="https://blog.aestas16.top/atom.xml"/>
@@ -10,6 +10,23 @@
     <logo>https://blog.aestas16.top/images/avatar.png</logo>
     <icon>https://blog.aestas16.top/favicon.ico</icon>
     <rights>All rights reserved 2020, Aestas16&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[NOIP2020 游记]]></title>
+        <id>https://blog.aestas16.top/post/noip2020/</id>
+        <link href="https://blog.aestas16.top/post/noip2020/">
+        </link>
+        <updated>2020-12-27T04:31:50.000Z</updated>
+        <summary type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/blog/Aestas16/csp-js-2020">CSP-S2020</a> 考挂, 被续命了</p>
+<hr>
+<p>希望不要再像 CSP-S2020 那样发挥失常, 挂一大堆分<br>
+千万千万千万不要.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><a href="https://www.luogu.com.cn/blog/Aestas16/csp-js-2020">CSP-S2020</a> 考挂, 被续命了</p>
+<hr>
+<p>希望不要再像 CSP-S2020 那样发挥失常, 挂一大堆分<br>
+千万千万千万不要.</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://blog.aestas16.top/post/hello-gridea/</id>
